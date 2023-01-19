@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { PermisosService } from 'src/app/services/permisos.service';
+
+// ES6 Modules or TypeScript
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-form-login',
@@ -6,10 +12,35 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./form-login.component.css']
 })
 export class FormLoginComponent implements OnInit {
-
-  constructor() { }
+  correcto:boolean = false;
+  public formLogin!: FormGroup;
+  constructor(private loginService:PermisosService, private formBuilder:FormBuilder, private router:Router) { }
 
   ngOnInit(): void {
+    this.formLogin = this.formBuilder.group({
+      user: ['',[
+        Validators.required,
+        Validators.minLength(8)
+      ]],
+      password: ['', [
+        Validators.required,
+        Validators.minLength(5)
+      ]]
+    });
   }
 
+  //Solo si el usuario ingreso información en el formulario
+  send():any{
+    if(this.loginService.Login(this.formLogin.get('user')?.value,this.formLogin.get('password')?.value)){ //le pasamos al método del servicio el usuario y contraseña
+      this.router.navigate(['/home']); //solo si el servicio retorna True, redireccionar al Home
+      this.correcto = true;
+    }else{
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Usuario y/o Contraseña Incorrectas'
+      })
+      this.formLogin.reset()
+    }
+  }
 }

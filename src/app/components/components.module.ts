@@ -5,7 +5,10 @@ import { FormContactoComponent } from './form-contacto/form-contacto.component';
 import { FormLoginComponent } from './form-login/form-login.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,8 +19,12 @@ import {MatIconModule} from '@angular/material/icon';
   imports: [
     CommonModule,
     MatCardModule,
+    MatInputModule,
     MatFormFieldModule,
-    MatIconModule
+    MatIconModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatButtonModule
   ],
   exports: [
     BodyHomeComponent,
