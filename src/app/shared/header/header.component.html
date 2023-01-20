@@ -1,8 +1,36 @@
+<!---
 <mat-toolbar color="primary">
     <mat-toolbar-row>
-      <span>Material Design</span>
-      <a mat-button [routerLink]="['home']" routerLinkActive="active" ariaCurrentWhenActive="page" [routerLinkActiveOptions]="{exact: true}">Home</a>
-      <a mat-button  [routerLink]="['contacto']" routerLinkActive="active" ariaCurrentWhenActive="page" [routerLinkActiveOptions]="{exact: true}">Contacto</a>
-      <a mat-button href="#">LoginOut</a>
+        <span>Material Design</span>
+        <span class="example-spacer"></span>
+        <button mat-icon-button class="example-icon hidden">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <a mat-button [routerLink]="['home']" routerLinkActive="active" ariaCurrentWhenActive="page" [routerLinkActiveOptions]="{exact: true}">Home</a>
+        <a mat-button  [routerLink]="['contacto']" routerLinkActive="active" ariaCurrentWhenActive="page" [routerLinkActiveOptions]="{exact: true}">Contacto</a>
+        <a mat-button (click)="cerrarSesion()">LoginOut</a>
+    </mat-toolbar-row>
+</mat-toolbar>-->
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+        <button mat-icon-button>
+            <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
+        </button>
+        <h1>Angular Material</h1>
     </mat-toolbar-row>
 </mat-toolbar>
+<mat-sidenav-container>
+    <mat-sidenav #sidenav mode="side" style="min-width: 200px;">
+        <mat-nav-list>
+            <a mat-list-item [routerLink]="['home']" routerLinkActive="active" ariaCurrentWhenActive="page" [routerLinkActiveOptions]="{exact: true}"><mat-icon>home</mat-icon> Home</a>
+            <a mat-list-item [routerLink]="['contacto']" routerLinkActive="active" ariaCurrentWhenActive="page" [routerLinkActiveOptions]="{exact: true}"><mat-icon>account_box</mat-icon> Contacto</a>
+            <a mat-list-item (click)="cerrarSesion()"><mat-icon>settings</mat-icon> Logout</a>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <div style="height:91vh; padding-bottom: 5px;">
+            <router-outlet></router-outlet>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>
+  

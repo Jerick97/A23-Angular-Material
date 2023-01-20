@@ -9,7 +9,7 @@ export class PermisosService {
     username : 'Jerick97',
     password: 'admin'
   }
-
+  isContactoModificado: boolean = false; //Esto validara si se modifico algún campo del formulario Contacto
   constructor() { }
 
   //Verificar el usuario y contraseña

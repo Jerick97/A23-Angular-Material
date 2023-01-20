@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { PermisosService } from 'src/app/services/permisos.service';
 
 
 @Component({
@@ -7,10 +9,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
-  constructor() { }
+  showFiller = false;
+  constructor(private usuarioService:PermisosService, private router:Router) { }
 
   ngOnInit(): void {
   }
 
+  cerrarSesion(){
+    this.usuarioService.logout(); //llamamos al método cerrar Sesión
+    this.router.navigate(['/']); //redirige al login
+  }
 }
